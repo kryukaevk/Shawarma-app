@@ -8,20 +8,20 @@ export const Header: React.FC = () => {
         <header className="flex justify-center items-center w-full bg-white h-32">
             <div className="flex justify-between w-3/5">
                 <div className="flex justify-center gap-10">
-                    <NavLink to="/" className="logo">
-                        <h1 className="header__title">
-                            <strong>SHAWARMA APP</strong>
+                    <NavLink to="/" className="hover:no-underline">
+                        <h1 className="logo-title text-lg">
+                            <strong className="text-black">SHAWARMA APP</strong>
                             <br />{' '}
                             <p className="text-gray-400">Готовим с любовью</p>
                         </h1>
                     </NavLink>
 
-                    <div className="flex items-center border border-1 border-gray-300 rounded-lg p-3 w-80 bg-white">
+                    <div className="flex items-center border border-1 border-gray-300 rounded-lg p-3 w-80 h-12 bg-white">
                         <div>
                             <img
                                 src={search}
                                 alt="search"
-                                className="h-5 w-5"
+                                className="h-5 w-6"
                             />
                         </div>
                         <input

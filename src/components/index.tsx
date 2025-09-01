@@ -1,2 +1,3 @@
 export { Header } from './header/header';
-export { Content } from './content/content';
+export { Top } from './top/top';
+export { Products } from './products/products';

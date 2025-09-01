@@ -1,10 +1,11 @@
-import { Content, Header } from './components';
+import { Top, Header, Products } from './components';
 
 function App() {
     return (
         <>
             <Header />
-            <Content />
+            <Top />
+            <Products />
         </>
     );
 }
