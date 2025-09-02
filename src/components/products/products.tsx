@@ -1,18 +1,45 @@
+import { useState } from 'react';
 import { PRODUCTS_MOCK } from './db';
-import bag from '../../assets/icon/bag.svg';
 import { truncateString } from './utils/truncateString';
+import { Button, Modal } from './components';
 
 export const Products: React.FC = () => {
+    const [activeIndex, setActiveIndex] = useState<number | null>(null);
+    const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+    const [activeModalIndex, setActiveModalIndex] = useState<number | null>(
+        null
+    );
+
+    const openModal = (index: number) => {
+        setIsModalOpen(!isModalOpen);
+        setActiveModalIndex(index);
+    };
+    const closeModal = () => {
+        setIsModalOpen(false);
+    };
+
+    const handleMouseEnter = (index: number) => {
+        setActiveIndex(index);
+    };
+
+    const handleMouseLeave = () => {
+        setActiveIndex(null);
+    };
+
     return (
         <div className="flex justify-center">
-            <div className="content__products flex justify-center items-center w-3/4">
-                <div className="product flex gap-5 my-7">
+            <div className="flex justify-center items-center w-3/4">
+                <ul className="flex gap-5 my-7">
                     {PRODUCTS_MOCK.map((item, index) => (
-                        <div
-                            className="flex justify-center shadow-xl rounded-xl  flex-col gap-5 m-4 p-1"
+                        <li
+                            className={`flex justify-center   flex-col gap-5 m-4 p-1 
+                                ${activeIndex === index ? 'shadow-xl rounded-xl' : ''}`}
                             key={index}
+                            onMouseEnter={() => handleMouseEnter(index)}
+                            onMouseLeave={handleMouseLeave}
+                            onClick={() => openModal(index)}
                         >
-                            <div className="product__image flex justify-center">
+                            <div className="flex justify-center">
                                 <img src={item.imageUrl} alt={item.title} />
                             </div>
                             <p className="text-center text-lg font-bold">
@@ -23,18 +50,20 @@ export const Products: React.FC = () => {
                                 <p className="font-bold">
                                     от {item.price} руб.
                                 </p>
-                                <button
-                                    type="submit"
-                                    className="flex justify-center gap-1 items-center w-32 rounded-lg p-1 bg-green-500"
-                                >
-                                    <img src={bag} alt="bag" className="w-6" />
-                                    <p>Собрать</p>
-                                </button>
+                                <Button
+                                    index={index}
+                                    openModal={() => openModal(index)}
+                                />
                             </div>
-                        </div>
+                        </li>
                     ))}
-                </div>
+                </ul>
             </div>
+            <Modal
+                isModalOpen={isModalOpen}
+                closeModal={closeModal}
+                activeModalIndex={activeModalIndex}
+            />
         </div>
     );
 };
