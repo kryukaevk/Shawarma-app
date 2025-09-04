@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import OutsideClickHandler from 'react-outside-click-handler';
 
 type SortOption =
     | 'популярности(+)'
@@ -33,39 +34,41 @@ export const Sort: React.FC = () => {
     };
 
     return (
-        <div className="sort">
-            <div className="flex gap-1 items-center">
-                <b>Сортировать по:</b>
-                <span
-                    className="text-lg cursor-pointer border-b border-dashed border-green-600 text-green-600"
-                    onClick={handlePopupClick}
+        <OutsideClickHandler onOutsideClick={() => setIsActiveList(false)}>
+            <div className="sort">
+                <div className="flex gap-1 items-center">
+                    <b>Сортировать по:</b>
+                    <span
+                        className="text-lg cursor-pointer border-b border-dashed border-green-600 text-green-600"
+                        onClick={handlePopupClick}
+                    >
+                        {sortValue}
+                    </span>
+                </div>
+                <div
+                    className={
+                        isActiveList
+                            ? 'absolute shadow-2xl rounded-xl ml-28 my-1 bg-white'
+                            : 'hidden'
+                    }
                 >
-                    {sortValue}
-                </span>
+                    <ul className="flex flex-col">
+                        {sortList.map((item, index) => (
+                            <li
+                                key={index}
+                                className={
+                                    activeListIndex === index
+                                        ? 'cursor-pointer p-2 text-green-600 bg-green-200 text-lg font-bold'
+                                        : 'text-lg cursor-pointer p-2 hover:bg-green-200 duration-300'
+                                }
+                                onClick={() => handleListClick(index, item)}
+                            >
+                                {item}
+                            </li>
+                        ))}
+                    </ul>
+                </div>
             </div>
-            <div
-                className={
-                    isActiveList
-                        ? 'absolute shadow-2xl rounded-xl ml-28 my-1 bg-white'
-                        : 'hidden'
-                }
-            >
-                <ul className="flex flex-col">
-                    {sortList.map((item, index) => (
-                        <li
-                            key={index}
-                            className={
-                                activeListIndex === index
-                                    ? 'cursor-pointer p-2 text-green-600 bg-green-200 text-lg font-bold'
-                                    : 'text-lg cursor-pointer p-2 hover:bg-green-200 duration-300'
-                            }
-                            onClick={() => handleListClick(index, item)}
-                        >
-                            {item}
-                        </li>
-                    ))}
-                </ul>
-            </div>
-        </div>
+        </OutsideClickHandler>
     );
 };

@@ -1,12 +1,18 @@
+type SauceSelect = 'Без соуса' | 'Классический' | 'Сырный' | 'Чесночный';
+
+type WeightSelect = 300 | 400 | 500;
+
+type ProductPrice = 350 | 450 | 550;
+
 interface Product {
     id: string;
     title: string;
     imageUrl: string;
-    price: number;
+    price: ProductPrice;
     description: string;
     category_id: 1;
-    sauce: string[];
-    weight: number[];
+    sauce: SauceSelect[];
+    weight: WeightSelect[];
 }
 
 export const PRODUCTS_MOCK: Product[] = [

@@ -9,6 +9,7 @@ export const Products: React.FC = () => {
     const [activeModalIndex, setActiveModalIndex] = useState<number | null>(
         null
     );
+    const [isActiveList, setIsActiveList] = useState<boolean>(false);
 
     const openModal = (index: number) => {
         setIsModalOpen(!isModalOpen);
@@ -16,6 +17,7 @@ export const Products: React.FC = () => {
     };
     const closeModal = () => {
         setIsModalOpen(false);
+        setIsActiveList(false);
     };
 
     const handleMouseEnter = (index: number) => {
@@ -63,6 +65,8 @@ export const Products: React.FC = () => {
                 isModalOpen={isModalOpen}
                 closeModal={closeModal}
                 activeModalIndex={activeModalIndex}
+                isActiveList={isActiveList}
+                setIsActiveList={setIsActiveList}
             />
         </div>
     );
