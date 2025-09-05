@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import OutsideClickHandler from 'react-outside-click-handler';
+import { OutsideClickWrapper } from '../utils';
 
 type SortOption =
     | 'популярности(+)'
@@ -34,7 +34,7 @@ export const Sort: React.FC = () => {
     };
 
     return (
-        <OutsideClickHandler onOutsideClick={() => setIsActiveList(false)}>
+        <OutsideClickWrapper onOutsideClick={() => setIsActiveList(false)}>
             <div className="sort">
                 <div className="flex gap-1 items-center">
                     <b>Сортировать по:</b>
@@ -69,6 +69,6 @@ export const Sort: React.FC = () => {
                     </ul>
                 </div>
             </div>
-        </OutsideClickHandler>
+        </OutsideClickWrapper>
     );
 };
