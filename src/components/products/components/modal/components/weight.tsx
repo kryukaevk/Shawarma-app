@@ -1,5 +1,5 @@
 import type { ProductPrice, WeightSelect } from '../../../../../types/types';
-import type { Product } from '../../../db';
+import type { Product } from '../../../../../db';
 
 interface WeightProps {
     product: Product;

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { PRODUCTS_MOCK } from '../../db';
+import { PRODUCTS_MOCK } from '../../../../db';
 import type {
     ProductPrice,
     SauceSelect,

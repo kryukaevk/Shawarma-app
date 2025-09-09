@@ -1,10 +1,10 @@
-import type {
-    ProductPrice,
-    SauceSelect,
-    WeightSelect,
-} from '../../types/types';
+type SauceSelect = 'Без соуса' | 'Классический' | 'Сырный' | 'Чесночный';
 
-export interface Product {
+type WeightSelect = 300 | 400 | 500;
+
+type ProductPrice = 350 | 450 | 550;
+
+interface Product {
     id: string;
     title: string;
     imageUrl: string;

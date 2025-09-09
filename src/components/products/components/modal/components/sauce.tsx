@@ -1,6 +1,6 @@
 import type { SauceSelect } from '../../../../../types/types';
 import { Chevron } from '../../../../../components';
-import type { Product } from '../../../db';
+import type { Product } from '../../../../../db';
 
 interface SauceProps {
     handlePopupClick: (e: React.MouseEvent<HTMLSpanElement>) => void;

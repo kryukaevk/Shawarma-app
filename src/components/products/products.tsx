@@ -1,7 +1,9 @@
-import { useState } from 'react';
-import { PRODUCTS_MOCK } from './db';
+import { useEffect, useState } from 'react';
 import { truncateString } from './utils/truncateString';
 import { Button, Modal } from './components';
+import { useDispatch, useSelector } from 'react-redux';
+import type { AppDispatch, RootState } from '../../store/store';
+import { fetchProducts } from '../../actions';
 
 export const Products: React.FC = () => {
     const [activeIndex, setActiveIndex] = useState<number | null>(null);
@@ -10,6 +12,15 @@ export const Products: React.FC = () => {
         null
     );
     const [isActiveList, setIsActiveList] = useState<boolean>(false);
+    const dispatch = useDispatch<AppDispatch>();
+
+    const { products, loading, error } = useSelector(
+        (state: RootState) => state.products
+    );
+
+    useEffect(() => {
+        dispatch(fetchProducts());
+    }, [dispatch]);
 
     const openModal = (index: number) => {
         setIsModalOpen(!isModalOpen);
@@ -28,11 +39,14 @@ export const Products: React.FC = () => {
         setActiveIndex(null);
     };
 
+    if (loading) return <div>Загрузка...</div>;
+    if (error) return <div>Ошибка: {error}</div>;
+
     return (
         <div className="flex justify-center">
             <div className="flex justify-center items-center w-3/4">
                 <ul className="flex gap-5 my-7">
-                    {PRODUCTS_MOCK.map((item, index) => (
+                    {products.map((item, index) => (
                         <li
                             className={`flex justify-center   flex-col gap-5 m-4 p-1 
                                 ${activeIndex === index ? 'shadow-xl rounded-xl' : ''}`}
