@@ -3,7 +3,7 @@ import { useState } from 'react';
 export const Categories: React.FC = () => {
     const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
-    const categories = ['Все', 'Фри', 'Россия', 'Гавайи', 'Вегетарианская'];
+    const categories = ['Все', 'Фри', 'Россия', 'Гавайи', 'В пите'];
 
     const handleCategoriesClick = (index: number) => {
         setActiveIndex(index);

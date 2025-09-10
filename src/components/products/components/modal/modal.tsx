@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { PRODUCTS_MOCK } from '../../../../db';
+import { type Product } from '../../../../db';
 import type {
     ProductPrice,
     SauceSelect,
@@ -19,6 +19,7 @@ interface ModalProps {
     activeModalIndex: number | null;
     isActiveList: boolean;
     setIsActiveList: React.Dispatch<React.SetStateAction<boolean>>;
+    products: Product[];
 }
 
 export const Modal: React.FC<ModalProps> = ({
@@ -27,6 +28,7 @@ export const Modal: React.FC<ModalProps> = ({
     activeModalIndex,
     isActiveList,
     setIsActiveList,
+    products,
 }) => {
     const [sauceValue, setSauceValue] = useState<SauceSelect>('Без соуса');
     const [weightValue, setWeightValue] = useState<WeightSelect>(300);
@@ -35,7 +37,7 @@ export const Modal: React.FC<ModalProps> = ({
     const [currentPrice, setCurrentPrice] = useState<ProductPrice>(350);
     const [priceByWeight, setPriceByWeight] = useState<number>(currentPrice);
 
-    const currentProduct = PRODUCTS_MOCK.filter(
+    const currentProduct = products.filter(
         (_, index) => activeModalIndex === index
     );
 
