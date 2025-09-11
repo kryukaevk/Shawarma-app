@@ -1,15 +1,26 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 import { type Product } from '../db';
 import { fetchProducts } from '../actions';
+
+type ProductsState = {
+    products: Product[];
+    loading: boolean;
+    error: string | null;
+    selectedCategory: string;
+};
 
 const productSlice = createSlice({
     name: 'products',
     initialState: {
-        products: [] as Product[],
+        products: [],
         loading: false,
-        error: null as string | null,
-    },
+        error: null,
+        selectedCategory: 'Все',
+    } as ProductsState,
     reducers: {
+        setSelectedCategory(state, action: PayloadAction<string>) {
+            state.selectedCategory = action.payload;
+        },
         // addToCard(state, action) {
         //     //empty
         // },
@@ -32,4 +43,5 @@ const productSlice = createSlice({
     },
 });
 
+export const { setSelectedCategory } = productSlice.actions;
 export default productSlice.reducer;

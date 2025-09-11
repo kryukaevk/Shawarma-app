@@ -1,12 +1,16 @@
-import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import type { RootState } from '../../../store/store';
+import { setSelectedCategory } from '../../../store/productsSlice';
 
 export const Categories: React.FC = () => {
-    const [activeIndex, setActiveIndex] = useState<number | null>(null);
-
+    const dispatch = useDispatch();
+    const selectedCategory = useSelector(
+        (state: RootState) => state.productsList.selectedCategory
+    );
     const categories = ['Все', 'Фри', 'Россия', 'Гавайи', 'В пите'];
 
-    const handleCategoriesClick = (index: number) => {
-        setActiveIndex(index);
+    const handleCategoriesClick = (category: string) => {
+        dispatch(setSelectedCategory(category));
     };
 
     return (
@@ -16,11 +20,11 @@ export const Categories: React.FC = () => {
                     <li
                         key={index}
                         className={
-                            activeIndex === index
+                            selectedCategory === item
                                 ? 'active__item'
                                 : 'categories__item'
                         }
-                        onClick={() => handleCategoriesClick(index)}
+                        onClick={() => handleCategoriesClick(item)}
                     >
                         {item}
                     </li>

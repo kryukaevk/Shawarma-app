@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { IsLoading, Modal, Pagination, ProductsList } from './components';
 import { useDispatch, useSelector } from 'react-redux';
 import type { AppDispatch, RootState } from '../../store/store';
-import { fetchProducts } from '../../actions';
+import { fetchProducts, sortedProducts } from '../../actions';
 
 export const Products: React.FC = () => {
     const [activeIndex, setActiveIndex] = useState<number | null>(null);
@@ -12,11 +12,12 @@ export const Products: React.FC = () => {
     );
     const [isActiveList, setIsActiveList] = useState<boolean>(false);
     const dispatch = useDispatch<AppDispatch>();
+    const products = useSelector(sortedProducts);
     const [currentPage, setCurrentPage] = useState<number>(1);
     const [productsPerPage] = useState<number>(4);
 
-    const { products, loading, error } = useSelector(
-        (state: RootState) => state.products
+    const { loading, error } = useSelector(
+        (state: RootState) => state.productsList
     );
 
     useEffect(() => {

@@ -1,37 +1,48 @@
 import { useState } from 'react';
 import { OutsideClickWrapper } from '../utils';
+import { useDispatch, useSelector } from 'react-redux';
+import type { RootState } from '../../../store/store';
+import {
+    setField,
+    setOrder,
+    type SortField,
+    type SortOrder,
+} from '../../../store/sortSlice';
 
-type SortOption =
-    | 'популярности(+)'
-    | 'популярности(-)'
-    | 'цене(+)'
-    | 'цене(-)'
-    | 'алфавиту(+)'
-    | 'алфавиту(-)';
+interface SortOption {
+    label: string;
+    field: SortField;
+    order: SortOrder;
+}
 
 export const Sort: React.FC = () => {
-    const [activeListIndex, setActiveListIndex] = useState<number | null>(null);
-    const [sortValue, setSortValue] = useState<SortOption>('популярности(+)');
+    const dispatch = useDispatch();
+    const { field, order } = useSelector((state: RootState) => state.sorter);
     const [isActiveList, setIsActiveList] = useState<boolean>(false);
 
-    const sortList: SortOption[] = [
-        'популярности(+)',
-        'популярности(-)',
-        'цене(+)',
-        'цене(-)',
-        'алфавиту(+)',
-        'алфавиту(-)',
+    const sortOptions: SortOption[] = [
+        { label: 'популярности (убыв.)', field: 'popularity', order: 'desc' },
+        { label: 'популярности (возр.)', field: 'popularity', order: 'asc' },
+        { label: 'цене (убыв.)', field: 'price', order: 'desc' },
+        { label: 'цене (возр.)', field: 'price', order: 'asc' },
+        { label: 'алфавиту (убыв.)', field: 'title', order: 'desc' },
+        { label: 'алфавиту (возр.)', field: 'title', order: 'asc' },
     ];
 
     const handlePopupClick = () => {
         setIsActiveList(!isActiveList);
     };
 
-    const handleListClick = (index: number, item: SortOption) => {
-        setActiveListIndex(index);
+    const handleListClick = (option: SortOption) => {
+        dispatch(setField(option.field));
+        dispatch(setOrder(option.order));
         setIsActiveList(!isActiveList);
-        setSortValue(item);
     };
+
+    const currentLabel =
+        sortOptions.find(
+            (option) => option.field === field && option.order === order
+        )?.label || 'популярности (убыв.)';
 
     return (
         <OutsideClickWrapper onOutsideClick={() => setIsActiveList(false)}>
@@ -42,7 +53,7 @@ export const Sort: React.FC = () => {
                         className="text-lg cursor-pointer border-b border-dashed border-green-600 text-green-600"
                         onClick={handlePopupClick}
                     >
-                        {sortValue}
+                        {currentLabel}
                     </span>
                 </div>
                 <div
@@ -53,17 +64,18 @@ export const Sort: React.FC = () => {
                     }
                 >
                     <ul className="flex flex-col">
-                        {sortList.map((item, index) => (
+                        {sortOptions.map((option, index) => (
                             <li
                                 key={index}
                                 className={
-                                    activeListIndex === index
+                                    field === option.field &&
+                                    order === option.order
                                         ? 'cursor-pointer p-2 text-green-600 bg-green-200 text-lg font-bold'
                                         : 'text-lg cursor-pointer p-2 hover:bg-green-200 duration-300'
                                 }
-                                onClick={() => handleListClick(index, item)}
+                                onClick={() => handleListClick(option)}
                             >
-                                {item}
+                                {option.label}
                             </li>
                         ))}
                     </ul>

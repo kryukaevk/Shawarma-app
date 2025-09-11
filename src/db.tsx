@@ -14,6 +14,7 @@ export interface Product {
     category: categorySelect;
     sauce: SauceSelect[];
     weight: WeightSelect[];
+    popularity: number;
 }
 
 export const PRODUCTS_MOCK: Product[] = [
@@ -24,9 +25,10 @@ export const PRODUCTS_MOCK: Product[] = [
         price: 350,
         description:
             'Лаваш, филе цыпленка, соус на выбор, свежие огурцы, морковь по-корейски, капуста, томаты свежие, картофель фри',
-        category: 'Fries',
+        category: 'Фри',
         sauce: ['Без соуса', 'Классический', 'Сырный', 'Чесночный'],
         weight: [300, 400, 500],
+        popularity: 8,
     },
     {
         id: '002',
@@ -35,9 +37,10 @@ export const PRODUCTS_MOCK: Product[] = [
         price: 350,
         description:
             'Лаваш, филе цыпленка, соус на выбор, свежие огурцы, капуста, томаты свежие',
-        category: 'Russia',
+        category: 'Россия',
         sauce: ['Без соуса', 'Классический', 'Сырный', 'Чесночный'],
         weight: [300, 400, 500],
+        popularity: 7,
     },
     {
         id: '003',
@@ -46,9 +49,10 @@ export const PRODUCTS_MOCK: Product[] = [
         price: 350,
         description:
             'Лаваш, филе цыпленка, соус на выбор, свежие огурцы, капуста, томаты свежие, картофель фри',
-        category: 'Russia',
+        category: 'Россия',
         sauce: ['Без соуса', 'Классический', 'Сырный', 'Чесночный'],
         weight: [300, 400, 500],
+        popularity: 5,
     },
     {
         id: '004',
@@ -57,9 +61,10 @@ export const PRODUCTS_MOCK: Product[] = [
         price: 350,
         description:
             'Лаваш, филе цыпленка, соус на выбор, огурцы маринованные, морковь по-корейски, капуста, лук красный, томаты свежие, картофель фри, горчица зернистая',
-        category: 'Russia',
+        category: 'Россия',
         sauce: ['Без соуса', 'Классический', 'Сырный', 'Чесночный'],
         weight: [300, 400, 500],
+        popularity: 3,
     },
     {
         id: '005',
@@ -68,9 +73,10 @@ export const PRODUCTS_MOCK: Product[] = [
         price: 350,
         description:
             'Лаваш, филе цыпленка, соус на выбор, картофель фри, капуста, соус барбекю, томаты свежие, огурцы маринованные, лук красный',
-        category: 'Fries',
+        category: 'Фри',
         sauce: ['Без соуса', 'Классический', 'Сырный', 'Чесночный'],
         weight: [300, 400, 500],
+        popularity: 1,
     },
     {
         id: '006',
@@ -79,9 +85,10 @@ export const PRODUCTS_MOCK: Product[] = [
         price: 350,
         description:
             'Лаваш, филе цыпленка, соус на выбор, шампиньоны жареные, картофель фри, лук красный',
-        category: 'Russia',
+        category: 'Россия',
         sauce: ['Без соуса', 'Классический', 'Сырный', 'Чесночный'],
         weight: [300, 400, 500],
+        popularity: 4,
     },
     {
         id: '007',
@@ -90,19 +97,21 @@ export const PRODUCTS_MOCK: Product[] = [
         price: 350,
         description:
             'Лаваш, филе цыпленка, соус на выбор, ананасы консервированные, сыр моцарелла, капуста',
-        category: 'Hawaii',
+        category: 'Гавайи',
         sauce: ['Без соуса', 'Классический', 'Сырный', 'Чесночный'],
         weight: [300, 400, 500],
+        popularity: 2,
     },
     {
         id: '008',
         title: 'Шаверма в пите',
         imageUrl: '/src/assets/image/pita.webp',
-        price: 350,
+        price: 250,
         description:
             'Лепешка собственного приготовления, филе цыпленка, соус на выбор, томаты свежие, огурцы маринованные, капуста, салат айсберг, соус гриль, лук красный, паприка копченая',
-        category: 'Pita',
+        category: 'В пите',
         sauce: ['Без соуса', 'Классический', 'Сырный', 'Чесночный'],
         weight: [300, 400, 500],
+        popularity: 6,
     },
 ];
