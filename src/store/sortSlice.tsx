@@ -15,10 +15,6 @@ const sortSlice = createSlice({
         order: 'desc',
     } as SortState,
     reducers: {
-        setSort(state, action: PayloadAction<SortState>) {
-            state.field = action.payload.field;
-            state.order = action.payload.order;
-        },
         setField(state, action: PayloadAction<SortField>) {
             state.field = action.payload;
         },
@@ -28,5 +24,5 @@ const sortSlice = createSlice({
     },
 });
 
-export const { setOrder, setField, setSort } = sortSlice.actions;
+export const { setOrder, setField } = sortSlice.actions;
 export default sortSlice.reducer;

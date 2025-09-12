@@ -1,12 +1,13 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 import { type Product } from '../db';
-import { fetchProducts } from '../actions';
+import { fetchProducts } from '../slicesLogic';
 
 type ProductsState = {
     products: Product[];
     loading: boolean;
     error: string | null;
     selectedCategory: string;
+    searchQuery: string;
 };
 
 const productSlice = createSlice({
@@ -16,10 +17,14 @@ const productSlice = createSlice({
         loading: false,
         error: null,
         selectedCategory: 'Все',
+        searchQuery: '',
     } as ProductsState,
     reducers: {
         setSelectedCategory(state, action: PayloadAction<string>) {
             state.selectedCategory = action.payload;
+        },
+        setSearchQuery(state, action: PayloadAction<string>) {
+            state.searchQuery = action.payload;
         },
         // addToCard(state, action) {
         //     //empty
@@ -43,5 +48,5 @@ const productSlice = createSlice({
     },
 });
 
-export const { setSelectedCategory } = productSlice.actions;
+export const { setSelectedCategory, setSearchQuery } = productSlice.actions;
 export default productSlice.reducer;

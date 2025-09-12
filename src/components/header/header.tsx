@@ -2,8 +2,20 @@ import search from '../../assets/icon/search.png';
 import card from '../../assets/icon/card.svg';
 import ruble from '../../assets/icon/ruble.svg';
 import { NavLink } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import type { RootState } from '../../store/store';
+import { setSearchQuery } from '../../store/productsSlice';
 
 export const Header: React.FC = () => {
+    const dispatch = useDispatch();
+    const { searchQuery } = useSelector(
+        (state: RootState) => state.productsList
+    );
+
+    const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+        dispatch(setSearchQuery(e?.target.value));
+    };
+
     return (
         <header className="flex justify-center items-center w-full bg-white h-32">
             <div className="flex justify-between w-3/5">
@@ -27,7 +39,9 @@ export const Header: React.FC = () => {
                         <input
                             className="w-full ml-2 outline-none"
                             type="text"
+                            value={searchQuery}
                             placeholder="Поиск шаурмы..."
+                            onChange={handleSearch}
                         />
                     </div>
                 </div>

@@ -2,7 +2,7 @@ import { createSelector } from '@reduxjs/toolkit';
 import type { RootState } from '../store/store';
 import type { Product } from '../db';
 import type { SortField, SortOrder } from '../store/sortSlice';
-import { selectFilteredProducts } from '../actions';
+import { selectFilteredProducts } from './selectFilteredProducts';
 
 const sortProductsState = (state: RootState) => {
     return state.sorter;

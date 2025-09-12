@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { IsLoading, Modal, Pagination, ProductsList } from './components';
 import { useDispatch, useSelector } from 'react-redux';
 import type { AppDispatch, RootState } from '../../store/store';
-import { fetchProducts, sortedProducts } from '../../actions';
+import { fetchProducts, sortedProducts } from '../../slicesLogic';
 
 export const Products: React.FC = () => {
     const [activeIndex, setActiveIndex] = useState<number | null>(null);
@@ -22,7 +22,8 @@ export const Products: React.FC = () => {
 
     useEffect(() => {
         dispatch(fetchProducts());
-    }, [dispatch]);
+        setCurrentPage(1);
+    }, [dispatch, products]);
 
     const indexOfLastProduct = currentPage * productsPerPage;
     const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
