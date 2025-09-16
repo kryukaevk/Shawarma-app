@@ -5,6 +5,7 @@ import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import type { RootState } from '../../store/store';
 import { setSearchQuery } from '../../store/productsSlice';
+import { currentOrderData } from '../../slicesLogic/transferOrderData';
 
 export const Header: React.FC = () => {
     const dispatch = useDispatch();
@@ -15,6 +16,11 @@ export const Header: React.FC = () => {
     const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
         dispatch(setSearchQuery(e?.target.value));
     };
+
+    const orders = useSelector(currentOrderData);
+
+    const totalPrice = orders.reduce((sum, order) => sum + order.price, 0);
+    const totalCount = orders.reduce((sum, order) => sum + order.count, 0);
 
     return (
         <header className="flex justify-center items-center w-full bg-white h-32">
@@ -46,10 +52,10 @@ export const Header: React.FC = () => {
                     </div>
                 </div>
 
-                <NavLink to="/card" className="header__card">
-                    <div className="flex justify-center items-center bg-green-600 rounded-3xl w-32 h-12 text-white font-semibold hover:bg-green-700 transition duration-300">
+                <NavLink to="/cart" className="header__cart hover:no-underline">
+                    <div className="flex justify-center items-center bg-green-600 rounded-3xl w-auto p-2 h-12 text-white font-semibold hover:bg-green-700 transition duration-300">
                         <div className="count_card flex justify-center items-center">
-                            <span>0</span>
+                            <span>{totalPrice}</span>
                             <img
                                 src={ruble}
                                 alt="ruble"
@@ -57,13 +63,13 @@ export const Header: React.FC = () => {
                             />
                         </div>
                         <div className="mx-2 h-6 border-l border-gray-300 ml-3 mr-3"></div>
-                        <div className="count_card flex justify-center items-center gap-1">
+                        <div className="flex justify-center items-center gap-1">
                             <img
                                 src={card}
                                 alt="card"
                                 className="h-6 w-6 filter brightness-0 invert"
                             />
-                            <span>0</span>
+                            <span>{totalCount}</span>
                         </div>
                     </div>
                 </NavLink>

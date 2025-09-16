@@ -5,3 +5,13 @@ export type SauceSelect = 'Без соуса' | 'Классический' | 'С
 export type WeightSelect = 300 | 400 | 500;
 
 export type ProductPrice = 250 | 350 | 450 | 550;
+
+export interface OrderData {
+    productId: string;
+    imageUrl: string;
+    title: string;
+    price: number;
+    selectedSauce: string;
+    selectedWeight: number;
+    count: number;
+}

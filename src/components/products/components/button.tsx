@@ -21,7 +21,7 @@ export const Button: React.FC<ButtonProps> = ({ index, openModal }) => {
 
     return (
         <button
-            type="submit"
+            type="button"
             className={`group flex justify-center gap-1 items-center rounded-lg p-1 border transition-all duration-500 ease-in-out 
                                         ${activeButtonIndex === index ? 'bg-green-600 w-28 text-white' : 'border-green-600 w-10'}`}
             onMouseEnter={() => handleMouseButtonEnter(index)}

@@ -26,9 +26,6 @@ const productSlice = createSlice({
         setSearchQuery(state, action: PayloadAction<string>) {
             state.searchQuery = action.payload;
         },
-        // addToCard(state, action) {
-        //     //empty
-        // },
     },
     extraReducers(builder) {
         builder

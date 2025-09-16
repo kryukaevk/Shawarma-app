@@ -12,6 +12,8 @@ import {
     Sauce,
     Weight,
 } from './components';
+import { useDispatch } from 'react-redux';
+import { addToCard } from '../../../../store/orderDataSlice';
 
 interface ModalProps {
     isModalOpen: boolean;
@@ -36,6 +38,10 @@ export const Modal: React.FC<ModalProps> = ({
     const [goodsCount, setGoodsCounter] = useState<number>(1);
     const [currentPrice, setCurrentPrice] = useState<ProductPrice>(350);
     const [priceByWeight, setPriceByWeight] = useState<number>(currentPrice);
+
+    const priceOrder: number = priceByWeight * goodsCount;
+
+    const dispatch = useDispatch();
 
     const currentProduct = products.filter(
         (_, index) => activeModalIndex === index
@@ -91,6 +97,22 @@ export const Modal: React.FC<ModalProps> = ({
         setPriceByWeight(350);
         setIsActiveList(false);
         closeModal();
+    };
+
+    const handletAddToCart = () => {
+        currentProduct.forEach((p) => {
+            dispatch(
+                addToCard({
+                    productId: p.id,
+                    imageUrl: p.imageUrl,
+                    title: p.title,
+                    price: priceOrder,
+                    selectedSauce: sauceValue,
+                    selectedWeight: weightValue,
+                    count: goodsCount,
+                })
+            );
+        });
     };
 
     if (!isModalOpen) return null;
@@ -156,8 +178,8 @@ export const Modal: React.FC<ModalProps> = ({
                                         />
 
                                         <ButtonOrder
-                                            priceByWeight={priceByWeight}
-                                            goodsCount={goodsCount}
+                                            priceOrder={priceOrder}
+                                            handletAddToCart={handletAddToCart}
                                         />
                                     </div>
                                 </div>
