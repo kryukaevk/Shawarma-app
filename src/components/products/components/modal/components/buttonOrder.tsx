@@ -15,8 +15,8 @@ export const ButtonOrder: React.FC<OrderProps> = ({
             className="flex items-center bg-green-500 text-white text-lg rounded-xl w-auto p-2 hover:bg-green-700 transition duration-300"
             type="button"
         >
-            Заказать за {priceOrder}
-            <Ruble />
+            Добавить за {priceOrder}
+            <Ruble size="5" />
         </button>
     );
 };

@@ -7,13 +7,13 @@ import type {
 } from '../../../../types/types';
 import {
     ButtonClose,
-    ButtonCount,
+    ButtonCountModal,
     ButtonOrder,
     Sauce,
     Weight,
 } from './components';
 import { useDispatch } from 'react-redux';
-import { addToCard } from '../../../../store/orderDataSlice';
+import { addToCart } from '../../../../store/orderDataSlice';
 
 interface ModalProps {
     isModalOpen: boolean;
@@ -102,7 +102,7 @@ export const Modal: React.FC<ModalProps> = ({
     const handletAddToCart = () => {
         currentProduct.forEach((p) => {
             dispatch(
-                addToCard({
+                addToCart({
                     productId: p.id,
                     imageUrl: p.imageUrl,
                     title: p.title,
@@ -167,7 +167,7 @@ export const Modal: React.FC<ModalProps> = ({
 
                                 <div className="flex justify-end">
                                     <div className="flex justify-center items-center gap-5">
-                                        <ButtonCount
+                                        <ButtonCountModal
                                             handlerGoodsCounterMinus={
                                                 handlerGoodsCounterMinus
                                             }

@@ -1,10 +1,10 @@
-interface ButtonCount {
+interface ButtonCountProps {
     handlerGoodsCounterMinus: (count: number) => void;
     goodsCount: number;
     handlerGoodsCounterPlus: (count: number) => void;
 }
 
-export const ButtonCount: React.FC<ButtonCount> = ({
+export const ButtonCountModal: React.FC<ButtonCountProps> = ({
     handlerGoodsCounterMinus,
     goodsCount,
     handlerGoodsCounterPlus,

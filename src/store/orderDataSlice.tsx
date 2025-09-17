@@ -24,7 +24,7 @@ const orderDataSlice = createSlice({
         orderArray: loadFromLocalStorage(),
     } as orderDataState,
     reducers: {
-        addToCard(state, action: PayloadAction<OrderData>) {
+        addToCart(state, action: PayloadAction<OrderData>) {
             const existingOrder = state.orderArray.find(
                 (order) =>
                     order.productId === action.payload.productId &&
@@ -52,8 +52,28 @@ const orderDataSlice = createSlice({
                 console.error('Не удалось удалить данные из localStorage', e);
             }
         },
+        removeItemFromCart(state, action: PayloadAction<OrderData>) {
+            state.orderArray = state.orderArray.filter(
+                (order) =>
+                    !(
+                        order.productId === action.payload.productId &&
+                        order.selectedSauce === action.payload.selectedSauce &&
+                        order.selectedWeight === action.payload.selectedWeight
+                    )
+            );
+
+            try {
+                localStorage.setItem('cart', JSON.stringify(state.orderArray));
+            } catch (e) {
+                console.error(
+                    'Ошибка при обновлении данных в localStorage:',
+                    e
+                );
+            }
+        },
     },
 });
 
-export const { addToCard, clearCart } = orderDataSlice.actions;
+export const { addToCart, clearCart, removeItemFromCart } =
+    orderDataSlice.actions;
 export default orderDataSlice.reducer;

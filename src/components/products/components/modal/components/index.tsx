@@ -1,5 +1,5 @@
 export { ButtonClose } from './buttonClose';
 export { Sauce } from './sauce';
 export { Weight } from './weight';
-export { ButtonCount } from './buttonCount';
+export { ButtonCountModal } from './buttonCountModal';
 export { ButtonOrder } from './buttonOrder';
