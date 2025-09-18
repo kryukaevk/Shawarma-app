@@ -7,7 +7,11 @@ import type { RootState } from '../../store/store';
 import { setSearchQuery } from '../../store/productsSlice';
 import { currentOrderData } from '../../slicesLogic/transferOrderData';
 
-export const Header: React.FC = () => {
+interface HeaderProps {
+    openModal: () => void;
+}
+
+export const Header: React.FC<HeaderProps> = ({ openModal }) => {
     const dispatch = useDispatch();
     const { searchQuery } = useSelector(
         (state: RootState) => state.productsList
@@ -52,27 +56,28 @@ export const Header: React.FC = () => {
                     </div>
                 </div>
 
-                <NavLink to="/cart" className="header__cart hover:no-underline">
-                    <div className="flex justify-center items-center bg-green-600 rounded-3xl w-auto p-2 h-12 text-white font-semibold hover:bg-green-700 transition duration-300">
-                        <div className="count_card flex justify-center items-center">
-                            <span>{totalPrice}</span>
-                            <img
-                                src={ruble}
-                                alt="ruble"
-                                className="h-6 w-5 filter brightness-0 invert"
-                            />
-                        </div>
-                        <div className="mx-2 h-6 border-l border-gray-300 ml-3 mr-3"></div>
-                        <div className="flex justify-center items-center gap-1">
-                            <img
-                                src={card}
-                                alt="card"
-                                className="h-6 w-6 filter brightness-0 invert"
-                            />
-                            <span>{totalCount}</span>
-                        </div>
+                <div
+                    onClick={openModal}
+                    className="flex justify-center items-center bg-green-600 rounded-3xl w-auto p-4 h-12 text-white font-semibold hover:bg-green-700 transition duration-300"
+                >
+                    <div className="count_card flex justify-center items-center">
+                        <span>{totalPrice}</span>
+                        <img
+                            src={ruble}
+                            alt="ruble"
+                            className="h-6 w-5 filter brightness-0 invert"
+                        />
                     </div>
-                </NavLink>
+                    <div className="mx-2 h-6 border-l border-gray-300 ml-3 mr-3"></div>
+                    <div className="flex justify-center items-center gap-1">
+                        <img
+                            src={card}
+                            alt="card"
+                            className="h-6 w-6 filter brightness-0 invert"
+                        />
+                        <span>{totalCount}</span>
+                    </div>
+                </div>
             </div>
         </header>
     );

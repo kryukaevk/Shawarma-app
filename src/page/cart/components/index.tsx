@@ -1,2 +1,2 @@
 export { EmptyCart } from './emptyCart';
-export { FullCart } from './fullCart';
+export { FullCart } from './fullCart/fullCart';

@@ -33,7 +33,7 @@ const orderDataSlice = createSlice({
             );
             if (existingOrder) {
                 existingOrder.count += action.payload.count;
-                existingOrder.price += action.payload.count;
+                existingOrder.price += action.payload.price;
             } else {
                 state.orderArray.push(action.payload);
             }

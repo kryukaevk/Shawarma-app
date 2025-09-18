@@ -1,9 +1,13 @@
 import { BigCart, Crying } from '../../../components/icons';
 import { ButtonBack } from './ButtonBack';
 
-export const EmptyCart: React.FC = () => {
+interface EmptyCartProps {
+    onClose: () => void;
+}
+
+export const EmptyCart: React.FC<EmptyCartProps> = ({ onClose }) => {
     return (
-        <div className="flex justify-center flex-col max-w-4xl p-4 text-center">
+        <div className="flex justify-center items-center flex-col max-w-4xl p-10 bg-white text-center rounded-2xl">
             <div className="flex flex-col gap-1 items-center">
                 <div className="flex items-center gap-2 my-3">
                     <h3>Корзина пустая</h3>
@@ -17,7 +21,7 @@ export const EmptyCart: React.FC = () => {
                 <BigCart />
             </div>
 
-            <ButtonBack />
+            <ButtonBack onClose={onClose} />
         </div>
     );
 };

@@ -16,7 +16,7 @@ export const ButtonOrder: React.FC<OrderProps> = ({
             type="button"
         >
             Добавить за {priceOrder}
-            <Ruble size="5" />
+            <Ruble wSize="5" hSize="5" />
         </button>
     );
 };

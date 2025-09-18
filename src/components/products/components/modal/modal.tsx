@@ -113,6 +113,7 @@ export const Modal: React.FC<ModalProps> = ({
                 })
             );
         });
+        handleCloseModal();
     };
 
     if (!isModalOpen) return null;
