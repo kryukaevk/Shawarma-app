@@ -6,6 +6,9 @@
     box-sizing: border-box;
 }
 
+/*
+system-ui, Avenir, Helvetica, Arial, sans-serif
+*/
 :root {
     font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
     line-height: 1.5;
@@ -17,7 +20,14 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
-h1,
+h1 {
+    font-family:
+        'Comic Sans MS',
+        Comic Sans,
+        cursive;
+    font-weight: 700;
+    line-height: 1.2;
+}
 h2,
 h3,
 h4,

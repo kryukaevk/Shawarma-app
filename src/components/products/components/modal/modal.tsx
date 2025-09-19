@@ -130,8 +130,8 @@ export const Modal: React.FC<ModalProps> = ({
                 <div className="product-modal" onClick={closeListClick}>
                     {currentProduct.map((product, index) => (
                         <div key={index} className="flex justify-center">
-                            <div className="product__left-block">
-                                <div className="product__image ">
+                            <div className="product__left-block mr-3">
+                                <div className="product__image">
                                     <img
                                         src={product.imageUrl}
                                         alt={product.title}

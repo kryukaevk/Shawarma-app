@@ -48,7 +48,10 @@ export const FullCart: React.FC<FullCartProps> = ({ orders, onClose }) => {
     };
 
     return (
-        <div className="mx-auto mt-0 mb-0 flex items-center justify-center flex-col bg-white rounded-2xl p-10">
+        <div
+            onClick={(e) => e.stopPropagation()}
+            className="mx-auto mt-0 mb-0 flex items-center justify-center flex-col bg-white rounded-2xl p-10"
+        >
             <div className="flex flex-col text-xl scroll-container">
                 <div className="flex justify-between items-center mx-7">
                     <div className="catr__icon flex items-center gap-1">
@@ -113,8 +116,8 @@ export const FullCart: React.FC<FullCartProps> = ({ orders, onClose }) => {
                         <p className="flex items-center font-bold text-green-500">
                             {totalPrice}
                             <Ruble
-                                wSize="6"
-                                hSize="5"
+                                wSize="5"
+                                hSize="6"
                                 color="#22c55e"
                                 strokeWidth="18"
                             />

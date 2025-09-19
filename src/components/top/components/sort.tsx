@@ -63,7 +63,7 @@ export const Sort: React.FC = () => {
                             : 'hidden'
                     }
                 >
-                    <ul className="flex flex-col">
+                    <ul className="flex flex-col my-2">
                         {sortOptions.map((option, index) => (
                             <li
                                 key={index}

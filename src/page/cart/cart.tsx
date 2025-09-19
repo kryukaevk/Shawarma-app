@@ -13,7 +13,10 @@ export const Cart: React.FC<CartProps> = ({ isOpen, onClose }) => {
     if (!isOpen) return null;
 
     return (
-        <div className="fixed inset-0 bg-black bg-opacity-55 flex items-center justify-center">
+        <div
+            onClick={onClose}
+            className="fixed inset-0 bg-black bg-opacity-55 flex items-center justify-center"
+        >
             {orders.length === 0 ? (
                 <EmptyCart onClose={onClose} />
             ) : (

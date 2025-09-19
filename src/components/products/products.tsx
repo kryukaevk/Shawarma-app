@@ -67,7 +67,12 @@ export const Products: React.FC = () => {
         setActiveIndex(null);
     };
 
-    if (error) return <div>Ошибка: {error}</div>;
+    if (error)
+        return (
+            <div className="flex justify-center items-center">
+                Ошибка: {error}
+            </div>
+        );
 
     return (
         <div className="flex justify-center items-center flex-col">
